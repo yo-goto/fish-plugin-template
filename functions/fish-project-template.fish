@@ -2,7 +2,7 @@ function fish-project-template -d "Make a fisher template project"
     argparse \
         -x 'v,h,d' \
         'v/version' 'h/help' 'd/debug' \
-        'a/add_template' \
+        'p/project' 'a/add_template' \
         -- $argv
     or return 1
     
@@ -27,6 +27,11 @@ function fish-project-template -d "Make a fisher template project"
         return
     else if set -q _flag_help
         __fish-project-template_help
+        return
+    else if set -q _flag_project
+        for i in (seq 1 (count $list_create_files))
+            __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
+        end
         return
     else if test -n "$target_first"
         if contains $target_first $list_all
