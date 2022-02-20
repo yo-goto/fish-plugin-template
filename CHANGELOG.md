@@ -1,4 +1,5 @@
 - v0.1.0
+    - fixed interactive mode > selective mode > making test files & README, CHANGELOG, LICENSE
     - changed option handling in helper functions
     - added argparse and debug option to helper __fish-project-template_interactive
     - divided main function into interface & interactive-case porcess function

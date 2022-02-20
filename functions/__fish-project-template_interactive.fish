@@ -104,7 +104,7 @@ function __fish-project-template_interactive
     for i in (seq 1 (count $list_create_dir_test))
         while true
             set --local loop_exit_flag
-            read -l -P "Make \"$list_create_dir_test[$i]\"? [Y/n]: " question
+            read -l -P "Make \"$list_create_dir_test[$i]\" directory? [Y/n]: " question
             switch "$question"
                 case Y y yes
                     set --local loop_exit_flag
@@ -113,6 +113,12 @@ function __fish-project-template_interactive
                         while true
                             read -l -P "Type testing file name: " testing_file
                             __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' "$list_create_dir_test[$i]" --create_file $_flag_debug
+                            read -l -P "Make another file or Go next? [m:make | g:go]: " quesiton_exit
+                            switch "$quesiton_exit"
+                                case G g go
+                                    break
+                                case M m make
+                            end
                         end
                     end
                     break
@@ -130,9 +136,7 @@ function __fish-project-template_interactive
             switch "$question"
                 case Y y yes
                     ## project files
-                    for i in (seq 1 (count $list_create_files))
-                        __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" --create_file $_flag_debug
-                    end
+                    __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" --create_file $_flag_debug
                     break
                 case N n no
                     break
