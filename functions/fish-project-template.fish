@@ -24,11 +24,6 @@ function fish-project-template -d "Make a fisher template project"
     # set target name for plugin name or direcotry name
     set --local target_name $argv[1]
 
-
-    if set -q _flag_debug
-        set _flag_debug "true"
-    end
-
     if set -q _flag_version
         echo "fisher-project: " $version_fisher_project
         return
@@ -36,13 +31,16 @@ function fish-project-template -d "Make a fisher template project"
         __fish-project-template_help
         return
     else
-        __fish-project-template_interactive $target_name
+        __fish-project-template_interactive $target_name $_flag_debug
     end
 end
 
 
 # helper functions
-function __fish-project-template_interactive --argument-names 'plugin'
+function __fish-project-template_interactive
+    argparse 'd/debug' -- $argv
+    or return 1
+
     # color
     set --local cc (set_color $__fish_project_templete_color_color)
     set --local cn (set_color $__fish_project_templete_color_normal)
@@ -55,7 +53,7 @@ function __fish-project-template_interactive --argument-names 'plugin'
     set --local list_create_dir_test "tests"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"
 
-    set --local plugin_name $plugin
+    set --local plugin_name $argv[1]
 
     # first question to decide plugin name
     if not test -n "$plugin_name"
