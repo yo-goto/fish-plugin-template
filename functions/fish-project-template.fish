@@ -169,6 +169,3 @@ function __fish-project-template_help
     set_color normal
 end
 
-
-
-

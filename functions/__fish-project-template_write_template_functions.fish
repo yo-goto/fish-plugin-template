@@ -57,4 +57,3 @@ function __fish-project-template_write_template_functions --argument-names 'plug
     end
 end
 
-

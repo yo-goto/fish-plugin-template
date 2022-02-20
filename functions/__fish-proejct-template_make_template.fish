@@ -20,7 +20,6 @@ function __fish-proejct-template_make_template --argument-names 'directory' 'bas
 
     test "$bool_debug" = "true"
     and set -l _flag_debug "true"
-        
 
     if test "$directory" = "root"
         # make a directory root file
@@ -67,3 +66,4 @@ function __fish-proejct-template_make_template --argument-names 'directory' 'bas
         end
     end
 end
+
