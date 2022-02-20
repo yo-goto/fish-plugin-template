@@ -29,17 +29,18 @@ function fish-project-template -d "Make a fisher template project"
         __fish-project-template_help
         return
     else if set -q _flag_project
+        # create README CHANGELOG LICENSE
         for i in (seq 1 (count $list_create_files))
             __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
         end
         return
     else if test -n "$target_first"
+        # create target dir & files
         if contains $target_first $list_all
 
             if test -n "$target_second_file_name"
                 # for list_create_dir
                 if contains $target_first $list_create_dir
-                    set -q _flag_debug; and echo $ce"Debug Point: [Z-1]"$cn
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
                     __fish-proejct-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                     return
@@ -47,7 +48,6 @@ function fish-project-template -d "Make a fisher template project"
 
                 # for list_create_dir_test
                 if contains $target_first $list_create_dir_test
-                    set -q _flag_debug; and echo $ce"Debug Point: [Z-2]"$cn
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
                     __fish-proejct-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                     return
@@ -59,11 +59,12 @@ function fish-project-template -d "Make a fisher template project"
 
             # for list_create_files
             if contains $target_first $list_create_files
-                set -q _flag_debug; and echo $ce"Debug Point: [Z-3]"$cn
                 # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
                 __fish-proejct-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
                 return
             end
+        else
+            echo $ce"Target not found"$cn
         end
     else
         __fish-project-template_interactive $_flag_debug
@@ -76,6 +77,7 @@ function __fish-project-template_help
     set_color $__fish_project_templete_color_color
     echo 'Usage: '
     echo '      fish-project-template [OPTION]'
+    echo '      fish-project-template DIRECTORY PLUGINNAME'
     echo 'Options: '
     echo '      -v, --version         Show version info'
     echo '      -h, --help            Show help'
