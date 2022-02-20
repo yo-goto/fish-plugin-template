@@ -82,9 +82,9 @@ function __fish-plugin-template_help
     echo 'Options: '
     echo '      -v, --version         Show version info'
     echo '      -h, --help            Show help'
-    echo '      -d, --debug           Show debug tests'
-    echo '      -p, --project         Make project files'
-    echo '      -a, --add_template    Add template to a file'
+    echo '      -d, --debug           Debug'
+    echo '      -p, --project         Make project files (README LICENSE CHANGELOG)'
+    echo '      -a, --add_template    Add template to specified files'
     set_color normal
 end
 
