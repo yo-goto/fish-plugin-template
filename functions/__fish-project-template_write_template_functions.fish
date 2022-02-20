@@ -31,7 +31,7 @@ function __fish-project-template_write_template_functions
     "   # color template set" \
     "   set --local cc (set_color \$fish_color_comment)" \
     "   set --local ce (set_color \$fish_color_error)" \
-    "   set --local cn (set_color normal)" \
+    "   set --local cn (set_color \$fish_color_normal)" \
     "   " \
     "   if set -q _flag_version" \
     "       echo \"$plugin: \" \$version_$plugin" \
