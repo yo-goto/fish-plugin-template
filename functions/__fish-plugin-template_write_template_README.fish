@@ -21,10 +21,31 @@ function __fish-plugin-template_write_template_README
 
 builtin printf -- '%s\n' \
 "# $plugin
+> YOUR PLUGIN DISCRIPTION
 
 ## Installation
 
+Using [fisher](https://github.com/jorgebucaran/fisher):
+
+```console
+fisher install USER_NAME/PROJECT_NAME
+```
+
+Update
+
+```console
+fisher update USER_NAME/PROJECT_NAME
+```
+
 ## Usage
+
+```console
+Usage:
+      $plugin [OPTIONS]
+Options:
+      -v, --version         Show version info
+      -h, --help            Show help
+```
 
 ## Change log
 - [CHANGELOG.md](/CHANGELOG.md)
