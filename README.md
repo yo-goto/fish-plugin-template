@@ -1,7 +1,7 @@
 # fish-plugin-template
 > A fish plugin to make template directories and project files for fish plugin development
 
-You can start developing a fish plugin quickly with this plugin.
+With typing `fish-plugin-template` in your command-line, you can start developing a fish plugin instantly.
 
 ## Installation
 
@@ -33,9 +33,9 @@ Options:
       -a, --add_template    Add template to specified files
 ```
 
-As a alias, 'fpt' is also available.
+As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/fish-plugin-template.fish`.
 
-```shell
+```console
 ❯ fpt -pa
 -->created: ./README.md
 -->added template: ./README.md
