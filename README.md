@@ -1,5 +1,5 @@
 # fish-plugin-template 🍤
-> A fish plugin to make template directories and project files for fish plugin development
+> *A fish plugin to make template directories and project files for fish plugin development*
 
 With typing `fish-plugin-template` in your command-line, you can start developing a fish plugin instantly.
 
