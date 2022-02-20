@@ -18,7 +18,7 @@ function fish-plugin-template -d "Make a fish plugin project with template"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"
     set --local list_all $list_create_dir $list_create_dir_test $list_create_files
 
-    # set target name for a plugin name or direcotry name
+    # set target name for a plugin name or directory name
     set --local target_first $argv[1]
     set --local target_second_file_name $argv[2]
 
