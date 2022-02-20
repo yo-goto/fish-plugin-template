@@ -37,6 +37,12 @@ function fish-plugin-template -d "Make a fish plugin project with template"
     else if test -n "$target_first"
         # create target dir & files
         if contains $target_first $list_all
+            # for list_create_files
+            if contains $target_first $list_create_files
+                # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
+                __fish-proejct-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
+                return
+            end
 
             if test -n "$target_second_file_name"
                 # for list_create_dir
@@ -56,13 +62,6 @@ function fish-plugin-template -d "Make a fish plugin project with template"
                 echo $ce"Please pass a file name to the second argument"$cn
                 return 1
             end
-
-            # for list_create_files
-            if contains $target_first $list_create_files
-                # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                __fish-proejct-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
-                return
-            end
         else
             echo $ce"Target not found"$cn
         end
@@ -76,8 +75,10 @@ end
 function __fish-plugin-template_help
     set_color $__fish_plugin_templete_color_color
     echo 'Usage: '
-    echo '      fish-plugin-template [OPTION]'
-    echo '      fish-plugin-template DIRECTORY PLUGINNAME'
+    echo '      fish-plugin-template'
+    echo '      fish-plugin-template [-v | -h] [-p [-a]]'
+    echo '      fish-plugin-template DIRECTORY PLUGINNAME [-a]'
+    echo '      fish-plugin-template PROJECTFILE [-a]'
     echo 'Options: '
     echo '      -v, --version         Show version info'
     echo '      -h, --help            Show help'
