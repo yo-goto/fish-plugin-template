@@ -6,7 +6,7 @@ function fish-project-template -d "Make a fisher template project"
         -- $argv
     or return 1
     
-    set --local version_fisher_project "v0.0.1"
+    set --local version_fish_project_template "v0.0.1"
 
     # color
     set --local cc (set_color $__fish_project_templete_color_color)
@@ -25,7 +25,7 @@ function fish-project-template -d "Make a fisher template project"
     set --local target_name $argv[1]
 
     if set -q _flag_version
-        echo "fisher-project: " $version_fisher_project
+        echo "fish-project-template:" $version_fish_project_template
         return
     else if set -q _flag_help
         __fish-project-template_help
