@@ -1,5 +1,6 @@
 - v0.1.1
     - updated help info
+    - fixed project & add_template options combination
 - v0.1.0
     - added project option to fish-project-template
     - updated option flag stream & updated arguments handling

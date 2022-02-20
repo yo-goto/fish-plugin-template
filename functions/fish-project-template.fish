@@ -30,7 +30,7 @@ function fish-project-template -d "Make a fisher template project"
         return
     else if set -q _flag_project
         for i in (seq 1 (count $list_create_files))
-            __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
+            __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
         end
         return
     else if test -n "$target_first"
