@@ -7,7 +7,7 @@ function __fish-plugin-template_write_template_completions
     set --local filepath "./completions/$plugin.fish"
 
     if not test -n "$plugin"
-        echo "code failed: [3]"
+        echo "code failed: [__fish-plugin-template_write_template_completions ]"
         return 1
     end
 
@@ -17,9 +17,9 @@ function __fish-plugin-template_write_template_completions
     set --local ca (set_color $__fish_plugin_templete_color_accent)
     set --local ce (set_color $__fish_plugin_templete_color_error)
 
-    set -q _flag_debug; and echo "Debug point: [E]"
+    set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_completions ]"$cn
 
-    printf -- '%s\n' \
+    builtin printf -- '%s\n' \
     "# generated completion template from fish-plugin" \
     "complete -c $plugin -s v -l version -f -d \"Show version info\"" \
     "complete -c $plugin -s h -l help -f -d \"Show help\"" \

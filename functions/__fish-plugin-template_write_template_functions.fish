@@ -7,7 +7,7 @@ function __fish-plugin-template_write_template_functions
     set --local filepath "./functions/$plugin.fish"
 
     if not test -n "$plugin"
-        echo "code failed: [2]"
+        echo "code failed: [__fish-plugin-template_write_template_functions]"
         return 1
     end
 
@@ -17,9 +17,9 @@ function __fish-plugin-template_write_template_functions
     set --local ca (set_color $__fish_plugin_templete_color_accent)
     set --local ce (set_color $__fish_plugin_templete_color_error)
 
-    set -q _flag_debug; and echo $ce"Debug point: [D]"$cn
+    set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_functions ]"$cn
 
-    printf -- '%s\n' \
+    builtin printf -- '%s\n' \
     "# generated function template from fish-plugin" \
     "function $plugin -d 'DISCRIPTION'" \
     "   argparse \ " \
