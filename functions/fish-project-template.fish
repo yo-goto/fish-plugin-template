@@ -90,21 +90,21 @@ function __fish-project-template_interactive
                 # prototype
                 for i in (seq 1 (count $list_create_dir))
                     set -q _flag_debug; and \
-                    echo $ce"Debug pattern(dir): "$cn "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" 'true' "$_flag_debug"
-                    __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" 'true' "$_flag_debug"
+                    echo $ce"Debug pattern(dir): "$cn "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" --create_file $_flag_debug
+                    __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" --create_file $_flag_debug
                 end
 
                 for i in (seq 1 (count $list_create_dir_test))
                     set -q _flag_debug; and \
-                    echo $ce"Debug pattern(dir): "$cn "$list_create_dir_test[$i]" "$plugin_name" '.fish' "$list_create_dir_test[$i]" 'true' "$_flag_debug"
-                    __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$plugin_name-test" '.fish' "$list_create_dir_test[$i]" 'true' "$_flag_debug"
+                    echo $ce"Debug pattern(dir): "$cn "$list_create_dir_test[$i]" "$plugin_name" '.fish' "$list_create_dir_test[$i]" --create_file $_flag_debug
+                    __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$plugin_name-test" '.fish' "$list_create_dir_test[$i]" --create_file $_flag_debug
                 end
 
                 ## project files
                 for i in (seq 1 (count $list_create_files))
                     set -q _flag_debug; and \
-                    echo $ce"Debug pattern(file): "$cn 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" 'true' "$_flag_debug"
-                    __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" 'true' "$_flag_debug"
+                    echo $ce"Debug pattern(file): "$cn 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" --create_file $_flag_debug
+                    __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" --create_file $_flag_debug
                 end
                 return
             case N n no
@@ -119,12 +119,12 @@ function __fish-project-template_interactive
             read -l -P "Make \"$list_create_dir[$i]\" directory? [Y/n]: " question
             switch "$question"
                 case Y y yes
-                    __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" 'false' "$_flag_debug"
+                    __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" $_flag_debug
                     while true
                         read -l -P "Make \"$plugin_name.fish\" in \"./$list_create_dir[$i]\"? [Y/n]: " choice
                         switch "$choice"
                             case Y y yes
-                                __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" 'true' "$_flag_debug"
+                                __fish-proejct-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' "$list_create_dir[$i]" --create_file $_flag_debug
                                 set loop_exit_flag "true"
                                 break
                             case N n no
@@ -151,7 +151,7 @@ function __fish-project-template_interactive
                     for i in (seq 1 (count $list_create_dir_test))
                         while true
                             read -l -P "Type testing file name: " testing_file
-                            __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' "$list_create_dir_test[$i]" 'true' "$_flag_debug"
+                            __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' "$list_create_dir_test[$i]" --create_file $_flag_debug
                         end
                     end
                     break
@@ -170,7 +170,7 @@ function __fish-project-template_interactive
                 case Y y yes
                     ## project files
                     for i in (seq 1 (count $list_create_files))
-                        __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" 'true' "$_flag_debug"
+                        __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' "$list_create_files[$i]" --create_file $_flag_debug
                     end
                     break
                 case N n no

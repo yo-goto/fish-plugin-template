@@ -1,9 +1,15 @@
-function __fish-project-template_write_template_completions --argument-names 'plugin' 'bool_debug'
+function __fish-project-template_write_template_completions 
+    # --argument-names 'plugin' 'bool_debug'
+    argparse 'd/debug' -- $argv
+    or return 1
+
+    set --local plugin $argv[1]
+    set --local filepath "./completions/$plugin.fish"
+
     if not test -n "$plugin"
         echo "code failed: [3]"
         return 1
     end
-    set --local filepath "./completions/$plugin.fish"
 
     # color
     set --local cc (set_color $__fish_project_templete_color_color)
@@ -11,8 +17,6 @@ function __fish-project-template_write_template_completions --argument-names 'pl
     set --local ca (set_color $__fish_project_templete_color_accent)
     set --local ce (set_color $__fish_project_templete_color_error)
 
-    test "$bool_debug" = "true"
-    and set -l _flag_debug "true"
     set -q _flag_debug; and echo "Debug point: [E]"
 
     printf -- '%s\n' \

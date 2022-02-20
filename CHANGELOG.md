@@ -1,0 +1,6 @@
+- v0.1.0
+    - changed option handling in helper functions
+    - added argparse and debug option to helper __fish-project-template_interactive
+    - divided main function into interface & interactive-case porcess function
+- v0.0.1
+    - basic code

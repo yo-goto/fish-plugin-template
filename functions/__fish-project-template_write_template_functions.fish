@@ -1,9 +1,15 @@
-function __fish-project-template_write_template_functions --argument-names 'plugin' 'bool_debug'
+function __fish-project-template_write_template_functions 
+    # --argument-names 'plugin' 'bool_debug'
+    argparse 'd/debug' -- $argv
+    or return 1
+
+    set --local plugin $argv[1]
+    set --local filepath "./functions/$plugin.fish"
+
     if not test -n "$plugin"
         echo "code failed: [2]"
         return 1
     end
-    set --local filepath "./functions/$plugin.fish"
 
     # color
     set --local cc (set_color $__fish_project_templete_color_color)
@@ -11,9 +17,7 @@ function __fish-project-template_write_template_functions --argument-names 'plug
     set --local ca (set_color $__fish_project_templete_color_accent)
     set --local ce (set_color $__fish_project_templete_color_error)
 
-    test "$bool_debug" = "true"
-    and set -l _flag_debug "true"
-    set -q _flag_debug; and echo "Debug point: [D]"
+    set -q _flag_debug; and echo $ce"Debug point: [D]"$cn
 
     printf -- '%s\n' \
     "# generated function template from fish-plugin" \
