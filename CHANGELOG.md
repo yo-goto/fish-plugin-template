@@ -1,6 +1,7 @@
 - v0.2.2
     - fixed 'with argument' pattern for files such as README 
     - updated help message
+    - updated README template function
 - v0.2.1
     -  added new completions for directories & files
     -  added new template function for LICENSE & README
