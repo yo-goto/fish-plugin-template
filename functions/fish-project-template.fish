@@ -20,8 +20,14 @@ function fish-project-template -d "Make a fisher template project"
     set --local list_create_dir_test "tests"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"
 
-    set --local target_dir $argv[1]
     set --local plugin_name
+    # set target name for plugin name or direcotry name
+    set --local target_name $argv[1]
+
+
+    if set -q _flag_debug
+        set _flag_debug "true"
+    end
 
     if set -q _flag_version
         echo "fisher-project: " $version_fisher_project
@@ -29,31 +35,53 @@ function fish-project-template -d "Make a fisher template project"
     else if set -q _flag_help
         __fish-project-template_help
         return
+    else
+        __fish-project-template_interactive $target_name
     end
+end
 
-    if set -q _flag_debug
-        set _flag_debug "true"
-    end
+
+# helper functions
+function __fish-project-template_interactive --argument-names 'plugin'
+    # color
+    set --local cc (set_color $__fish_project_templete_color_color)
+    set --local cn (set_color $__fish_project_templete_color_normal)
+    set --local ca (set_color $__fish_project_templete_color_accent)
+    set --local ce (set_color $__fish_project_templete_color_error)
+    set --local tb (set_color -o)
+
+    # template directories & files for the proejct 
+    set --local list_create_dir "functions" "completions" "conf.d" 
+    set --local list_create_dir_test "tests"
+    set --local list_create_files "README" "CHANGELOG" "LICENSE"
+
+    set --local plugin_name $plugin
 
     # first question to decide plugin name
-    echo $tb$ca"Please type base name which will be a file name"$cn
-    while true
-        set --local loop_exit_flag
-        read -l -P "Base name: " plugin_name_prep
-        # strip ".fish"
-        and set plugin_name (string replace --all -r "\.fish\$" "" $plugin_name_prep)
+    if not test -n "$plugin_name"
+        echo $tb$ca"Please type base name which will be a file name"$cn
         while true
-            echo $cc"--> File name \"$plugin_name.fish\" is set"$cn
-            read -l -P "Is this OK? [Y/n]: " yes_or_no
-            switch "$yes_or_no"
-                case Y y yes
-                    set loop_exit_flag "true"
-                    break
-                case N n no
-                    break
+            set --local loop_exit_flag
+            read -l -P "Base name: " plugin_name_prep
+            # strip ".fish"
+            and set plugin_name (string replace --all -r "\.fish\$" "" $plugin_name_prep)
+            while true
+                echo $cc"--> File name \"$plugin_name.fish\" is set"$cn
+                read -l -P "Is this OK? [Y/n]: " yes_or_no
+                switch "$yes_or_no"
+                    case Y y yes
+                        set loop_exit_flag "true"
+                        break
+                    case N n no
+                        break
+                end
             end
+            test "$loop_exit_flag" = "true"; and break
         end
-        test "$loop_exit_flag" = "true"; and break
+    else
+        set --local plugin_name_prep $plugin_name
+        set plugin_name (string replace --all -r "\.fish\$" "" $plugin_name_prep)
+        echo $cc"--> File name \"$plugin_name.fish\" is set"$cn
     end
 
     # second quesiton to create a full template
@@ -152,12 +180,9 @@ function fish-project-template -d "Make a fisher template project"
             end
         end
     end
-
-    echo "all task is done"
 end
 
 
-# helper functions
 function __fish-project-template_help
     set_color $__fish_project_templete_color_color
     echo 'Usage: '
