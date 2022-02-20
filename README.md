@@ -1,9 +1,9 @@
-# fish-plugin-template
+# fish-plugin-template 🍤
 > A fish plugin to make template directories and project files for fish plugin development
 
 With typing `fish-plugin-template` in your command-line, you can start developing a fish plugin instantly.
 
-## Installation
+## Installation 🎣
 
 Using [fisher](https://github.com/jorgebucaran/fisher):
 
@@ -17,7 +17,7 @@ Update
 fisher update yo-goto/fish-plugin-template
 ```
 
-## Usage
+## Usage 🔦
 
 ```console
 Usage:
@@ -47,6 +47,6 @@ As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/
 You can write a template file for yourself.
 Modify files such as `__fish-plugin-template_write_template_functions.fish` in the config directory (normally `~/.config/fish`) for the function template.
 
-## Change log
+## Change log 🔖
 - [CHANGELOG.md](/CHANGELOG.md)
 
