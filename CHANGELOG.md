@@ -1,3 +1,9 @@
+- v0.2.2
+    - fixed 'with argument' pattern for files such as README 
+    - updated help message
+- v0.2.1
+    -  added new completions for directories & files
+    -  added new template function for LICENSE & README
 - v0.2.0
     - changed plugin name 'fish-project-template' to 'fish-plugin-template'
     - modified function names and variable names
