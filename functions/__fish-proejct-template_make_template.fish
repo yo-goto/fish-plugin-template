@@ -1,25 +1,30 @@
 function __fish-proejct-template_make_template 
-    # --argument-names 'directory' 'base_name' 'extension' 'template' '_flag_create_file' '_flag_debug'
-    argparse 'd/debug' 'c/create_file' -- $argv
+    # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
+    argparse 'c/create_file' 'a/add_template' 'd/debug' -- $argv
     or return 1
 
+    # name arguemnts
     set --local directory $argv[1]
     set --local base_name $argv[2]
     set --local extension $argv[3]
-    set --local template $argv[4]
 
     if not test -n "$directory" || not test -n "$base_name"
         # for debugging
-        begin 
+        if set -q _flag_debug
             echo "directory: " $directory
             echo "base_name: " $base_name
             echo "extension: " $extension
-            echo "template: " $template
+            echo "_flag_add_template: " $_flag_add_template
             echo "_flag_create_file: " $_flag_create_file
             echo "_flag_debug: " $_flag_debug
         end
         echo "code failed: [1]"
         return 1
+    end
+
+    if test "$extension" = ".fish"
+        set --local name_prep (string replace --all -r "\.fish\$" "" $base_name)
+        set base_name $name_prep
     end
 
     set --local filename (string join "" "$base_name" "$extension")
@@ -67,7 +72,7 @@ function __fish-proejct-template_make_template
     end
 
     # write template to the file created
-    if set -q _flag_create_file && set -q template
+    if set -q _flag_add_template && test -e "./$directory/$filename"
         set -q _flag_debug; and echo $ce"Debug point: [C-1]"$cn
         if functions --query __fish-project-template_write_template_$directory
             set -q _flag_debug; and echo $ce"Debug point: [C-2]"$cn
