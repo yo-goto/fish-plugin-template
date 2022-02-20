@@ -6,7 +6,7 @@ function fish-project-template -d "Make a fisher template project"
         -- $argv
     or return 1
     
-    set --local version_fish_project_template "v0.1.0"
+    set --local version_fish_project_template "v0.1.1"
 
     # color
     set --local cn (set_color $__fish_project_templete_color_normal)
@@ -77,9 +77,11 @@ function __fish-project-template_help
     echo 'Usage: '
     echo '      fish-project-template [OPTION]'
     echo 'Options: '
-    echo '      -v, --version   Show version info'
-    echo '      -h, --help      Show help'
-    echo '      -d, --debug     Show debug tests'
+    echo '      -v, --version         Show version info'
+    echo '      -h, --help            Show help'
+    echo '      -d, --debug           Show debug tests'
+    echo '      -p, --project         Make project files'
+    echo '      -a, --add_template    Add template to a file'
     set_color normal
 end
 
