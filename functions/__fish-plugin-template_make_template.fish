@@ -28,6 +28,8 @@ function __fish-proejct-template_make_template
     end
 
     set --local filename (string join "" "$base_name" "$extension")
+    set --local filepath
+    set --local template
     # color
     set --local cc (set_color $__fish_plugin_templete_color_color)
     set --local cn (set_color $__fish_plugin_templete_color_normal)
@@ -45,7 +47,8 @@ function __fish-proejct-template_make_template
                 echo $ce"-->failed:"$cc "./$filename" $cn
             end
         end
-
+        set filepath "./$filename"
+        set template $base_name
         set -q _flag_debug; and echo $ce"Debug point: [A]"$cn
     else
         if not test -d $directory
@@ -68,15 +71,17 @@ function __fish-proejct-template_make_template
             end
         end
 
+        set filepath "./$directory/$filename"
+        set template $directory
         set -q _flag_debug; and echo $ce"Debug point: [B]"$cn
     end
 
     # write template to the file created
-    if set -q _flag_add_template && test -e "./$directory/$filename"
+    if set -q _flag_add_template && test -e "$filepath"
         set -q _flag_debug; and echo $ce"Debug point: [C-1]"$cn
-        if functions --query __fish-plugin-template_write_template_$directory
+        if functions --query __fish-plugin-template_write_template_$template
             set -q _flag_debug; and echo $ce"Debug point: [C-2]"$cn
-            __fish-plugin-template_write_template_$directory $base_name $_flag_debug
+            __fish-plugin-template_write_template_$template $base_name $_flag_debug
         end
     end
 end
