@@ -35,6 +35,41 @@ Options:
 
 As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/fish-plugin-template.fish`.
 
+For basic usage, you should type only `fish-plugin-template` or `fpt` with no options in your command-line.  
+`fish-plugin-template` starts questions for your fish plugin.
+
+```console
+❯ fish-plugin-template
+Please type base name which will be used as a file name
+Base name: my-new-plugin
+--> File name "my-new-plugin.fish" is set
+Is this OK? [Y/n]: y
+Make a full template in this directory? [Y/n]: y
+-->created: ./functions/my-new-plugin.fish
+-->added template: ./functions/my-new-plugin.fish
+-->created: ./completions
+-->created: ./completions/my-new-plugin.fish
+-->added template: ./completions/my-new-plugin.fish
+-->created: ./conf.d
+-->created: ./conf.d/my-new-plugin.fish
+-->created: ./tests
+-->created: ./tests/my-new-plugin-test.fish
+-->added template: ./README.md
+-->added template: ./LICENSE.md
+```
+
+If you want to make `my-plugin.fish` in `functions` direcotry, type this.
+
+```console
+❯ fpt functions my-plugin -a
+-->created: ./functions
+-->created: ./functions/my-plugin.fish
+-->added template: ./functions/my-plugin.fish
+```
+
+If you need only project markdown files (`README.md`, `LICENSE.md`, `CHANGELOG.md`), just type `fish-plugin-template -p`.
+With `-a` or `--add_template` option flag, you can get template files.
+
 ```console
 ❯ fpt -pa
 -->created: ./README.md
