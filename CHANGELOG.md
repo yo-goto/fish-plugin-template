@@ -1,4 +1,7 @@
 - v0.1.0
+    - added project option to fish-project-template
+    - updated option flag stream & updated arguments handling
+    - added an new process branch which can take two arguments and `a/add_template` option flag
     - fixed interactive mode > selective mode > making test files & README, CHANGELOG, LICENSE
     - changed option handling in helper functions
     - added argparse and debug option to helper __fish-project-template_interactive
