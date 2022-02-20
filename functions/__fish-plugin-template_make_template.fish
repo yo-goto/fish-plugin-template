@@ -29,10 +29,10 @@ function __fish-proejct-template_make_template
 
     set --local filename (string join "" "$base_name" "$extension")
     # color
-    set --local cc (set_color $__fish_project_templete_color_color)
-    set --local cn (set_color $__fish_project_templete_color_normal)
-    set --local ca (set_color $__fish_project_templete_color_accent)
-    set --local ce (set_color $__fish_project_templete_color_error)
+    set --local cc (set_color $__fish_plugin_templete_color_color)
+    set --local cn (set_color $__fish_plugin_templete_color_normal)
+    set --local ca (set_color $__fish_plugin_templete_color_accent)
+    set --local ce (set_color $__fish_plugin_templete_color_error)
 
 
     if test "$directory" = "root"
@@ -74,9 +74,9 @@ function __fish-proejct-template_make_template
     # write template to the file created
     if set -q _flag_add_template && test -e "./$directory/$filename"
         set -q _flag_debug; and echo $ce"Debug point: [C-1]"$cn
-        if functions --query __fish-project-template_write_template_$directory
+        if functions --query __fish-plugin-template_write_template_$directory
             set -q _flag_debug; and echo $ce"Debug point: [C-2]"$cn
-            __fish-project-template_write_template_$directory $base_name $_flag_debug
+            __fish-plugin-template_write_template_$directory $base_name $_flag_debug
         end
     end
 end

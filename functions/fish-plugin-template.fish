@@ -1,4 +1,4 @@
-function fish-project-template -d "Make a fisher template project"
+function fish-plugin-template -d "Make a fish plugin project with template"
     argparse \
         -x 'v,h,d' \
         'v/version' 'h/help' 'd/debug' \
@@ -9,8 +9,8 @@ function fish-project-template -d "Make a fisher template project"
     set --local version_fish_project_template "v0.1.1"
 
     # color
-    set --local cn (set_color $__fish_project_templete_color_normal)
-    set --local ce (set_color $__fish_project_templete_color_error)
+    set --local cn (set_color $__fish_plugin_templete_color_normal)
+    set --local ce (set_color $__fish_plugin_templete_color_error)
 
     # template directories & files for the proejct 
     set --local list_create_dir "functions" "completions" "conf.d" 
@@ -23,10 +23,10 @@ function fish-project-template -d "Make a fisher template project"
     set --local target_second_file_name $argv[2]
 
     if set -q _flag_version
-        echo "fish-project-template:" $version_fish_project_template
+        echo "fish-plugin-template:" $version_fish_project_template
         return
     else if set -q _flag_help
-        __fish-project-template_help
+        __fish-plugin-template_help
         return
     else if set -q _flag_project
         # create README CHANGELOG LICENSE
@@ -67,17 +67,17 @@ function fish-project-template -d "Make a fisher template project"
             echo $ce"Target not found"$cn
         end
     else
-        __fish-project-template_interactive $_flag_debug
+        __fish-plugin-template_interactive $_flag_debug
     end
 end
 
 
 # helper functions
-function __fish-project-template_help
-    set_color $__fish_project_templete_color_color
+function __fish-plugin-template_help
+    set_color $__fish_plugin_templete_color_color
     echo 'Usage: '
-    echo '      fish-project-template [OPTION]'
-    echo '      fish-project-template DIRECTORY PLUGINNAME'
+    echo '      fish-plugin-template [OPTION]'
+    echo '      fish-plugin-template DIRECTORY PLUGINNAME'
     echo 'Options: '
     echo '      -v, --version         Show version info'
     echo '      -h, --help            Show help'

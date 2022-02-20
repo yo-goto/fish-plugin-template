@@ -1,4 +1,9 @@
+- v0.2.0
+    - changed plugin name 'fish-project-template' to 'fish-plugin-template'
+    - modified function names and variable names
 - v0.1.1
+    - deleted unnecessary debug points
+    - added 'Targe not found' error message' 
     - updated help info
     - fixed project & add_template options combination
 - v0.1.0

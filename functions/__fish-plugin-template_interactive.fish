@@ -1,12 +1,12 @@
-function __fish-project-template_interactive
+function __fish-plugin-template_interactive
     argparse 'd/debug' -- $argv
     or return 1
 
     # color
-    set --local cc (set_color $__fish_project_templete_color_color)
-    set --local cn (set_color $__fish_project_templete_color_normal)
-    set --local ca (set_color $__fish_project_templete_color_accent)
-    set --local ce (set_color $__fish_project_templete_color_error)
+    set --local cc (set_color $__fish_plugin_templete_color_color)
+    set --local cn (set_color $__fish_plugin_templete_color_normal)
+    set --local ca (set_color $__fish_plugin_templete_color_accent)
+    set --local ce (set_color $__fish_plugin_templete_color_error)
     set --local tb (set_color -o)
 
     # template directories & files for the proejct 
@@ -89,7 +89,7 @@ function __fish-project-template_interactive
                         end
                     end
 
-                    if functions --query __fish-project-template_write_template_$list_create_dir[$i]
+                    if functions --query __fish-plugin-template_write_template_$list_create_dir[$i]
                         while true
                             read -l -P "Add template to \"$plugin_name.fish\"? [Y/n]: " choice_add_templete
                             switch "$choice_add_templete"
@@ -123,7 +123,7 @@ function __fish-project-template_interactive
                             read -l -P "Type testing file name: " testing_file
                             __fish-proejct-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --create_file $_flag_debug
                             
-                            if functions --query __fish-project-template_write_template_$list_create_dir_test[$i]
+                            if functions --query __fish-plugin-template_write_template_$list_create_dir_test[$i]
                                 while true
                                     read -l -P "Add template to \"$testing_file.fish\"? [Y/n]: " choice_add_templete
                                     switch "$choice_add_templete"
@@ -166,7 +166,7 @@ function __fish-project-template_interactive
             end
         end
 
-        if functions --query __fish-project-template_write_template_$list_create_files[$i]
+        if functions --query __fish-plugin-template_write_template_$list_create_files[$i]
             while true
                 read -l -P "Add template to \"$list_create_files[$i].md\"? [Y/n]: " choice_add_templete
                 switch "$choice_add_templete"
