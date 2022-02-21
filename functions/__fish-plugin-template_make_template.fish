@@ -1,4 +1,4 @@
-function __fish-proejct-template_make_template 
+function __fish-plugin-template_make_template 
     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
     argparse 'c/create_file' 'a/add_template' 'd/debug' -- $argv
     or return 1

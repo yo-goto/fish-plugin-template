@@ -31,7 +31,7 @@ function fish-plugin-template -d "Make a fish plugin project with template"
     else if set -q _flag_project
         # create README CHANGELOG LICENSE
         for i in (seq 1 (count $list_create_files))
-            __fish-proejct-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
+            __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
         end
         return
     else if test -n "$target_first"
@@ -40,7 +40,7 @@ function fish-plugin-template -d "Make a fish plugin project with template"
             # for list_create_files
             if contains $target_first $list_create_files
                 # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                __fish-proejct-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
+                __fish-plugin-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
                 return
             end
 
@@ -48,14 +48,14 @@ function fish-plugin-template -d "Make a fish plugin project with template"
                 # for list_create_dir
                 if contains $target_first $list_create_dir
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                    __fish-proejct-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
+                    __fish-plugin-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                     return
                 end
 
                 # for list_create_dir_test
                 if contains $target_first $list_create_dir_test
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                    __fish-proejct-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
+                    __fish-plugin-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                     return
                 end
             else

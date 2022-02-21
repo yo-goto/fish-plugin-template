@@ -1,3 +1,5 @@
+- v0.3.1
+    - fixed a bug in the interactive use-case & function names '__fish-proejct-template_make_template'
 - v0.3.0
     - added override system (you can override default template with files such as `__fish-plugin-template_write_template_override_functions.fish`)
 - v0.2.2
