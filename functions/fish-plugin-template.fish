@@ -1,4 +1,4 @@
-function fish-plugin-template -d "Make a fish plugin project with template"
+function fish-plugin-template -d "Make fish plugin templates"
     argparse \
         -x 'v,h,d' \
         'v/version' 'h/help' 'd/debug' \
@@ -6,7 +6,7 @@ function fish-plugin-template -d "Make a fish plugin project with template"
         -- $argv
     or return 1
     
-    set --local version_fish_project_template "v0.3.1"
+    set --local version_fish_plugin_template "v0.3.2"
 
     # color
     set --local cn (set_color $__fish_plugin_templete_color_normal)
@@ -23,7 +23,7 @@ function fish-plugin-template -d "Make a fish plugin project with template"
     set --local target_second_file_name $argv[2]
 
     if set -q _flag_version
-        echo "fish-plugin-template:" $version_fish_project_template
+        echo "fish-plugin-template:" $version_fish_plugin_template
         return
     else if set -q _flag_help
         __fish-plugin-template_help
