@@ -1,3 +1,5 @@
+- v0.3.0
+    - added override system (you can override default template with files such as `__fish-plugin-template_write_template_override_functions.fish`)
 - v0.2.2
     - fixed 'with argument' pattern for files such as README 
     - updated help message
