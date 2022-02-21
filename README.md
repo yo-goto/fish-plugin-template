@@ -80,7 +80,8 @@ With `-a` or `--add_template` option flag, you can get template files.
 ```
 
 You can write a template file for yourself.
-Modify files such as `__fish-plugin-template_write_template_functions.fish` in the config directory (normally `~/.config/fish`) for the function template.
+For example, if you want to make your own function template, make a file named `__fish-plugin-template_write_template_override_functions.fish` in the config directory (normally `~/.config/fish`). `fish-plugin-template` tries to read override files instead of default templates if exist.
+
 
 ## Change log 🔖
 - [CHANGELOG.md](/CHANGELOG.md)

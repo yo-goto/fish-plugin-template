@@ -79,7 +79,9 @@ function __fish-proejct-template_make_template
     # write template to the file created
     if set -q _flag_add_template && test -e "$filepath"
         set -q _flag_debug; and echo $ce"Debug point: [C-1]"$cn
-        if functions --query __fish-plugin-template_write_template_$template
+        if functions --query __fish-plugin-template_write_template_override_$template
+            __fish-plugin-template_write_template_override_$template $base_name $_flag_debug
+        else if functions --query __fish-plugin-template_write_template_$template
             set -q _flag_debug; and echo $ce"Debug point: [C-2]"$cn
             __fish-plugin-template_write_template_$template $base_name $_flag_debug
         end
