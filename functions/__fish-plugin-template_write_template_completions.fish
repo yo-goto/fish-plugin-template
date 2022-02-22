@@ -1,5 +1,5 @@
 function __fish-plugin-template_write_template_completions 
-    # --argument-names 'plugin' 'bool_debug'
+    # --argument-names 'plugin' '_flag_debug'
     argparse 'd/debug' -- $argv
     or return 1
 

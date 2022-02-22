@@ -9,7 +9,7 @@ function __fish-plugin-template_interactive
     set --local ce (set_color $__fish_plugin_templete_color_error)
     set --local tb (set_color -o)
 
-    # template directories & files for the proejct 
+    # template directories & files for the project 
     set --local list_create_dir "functions" "completions" "conf.d" 
     set --local list_create_dir_test "tests"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"

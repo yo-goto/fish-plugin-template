@@ -6,13 +6,13 @@ function fish-plugin-template -d "Make fish plugin templates"
         -- $argv
     or return 1
     
-    set --local version_fish_plugin_template "v0.3.2"
+    set --local version_fish_plugin_template "v0.3.3"
 
     # color
     set --local cn (set_color $__fish_plugin_templete_color_normal)
     set --local ce (set_color $__fish_plugin_templete_color_error)
 
-    # template directories & files for the proejct 
+    # template directories & files for the project 
     set --local list_create_dir "functions" "completions" "conf.d" 
     set --local list_create_dir_test "tests"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"
