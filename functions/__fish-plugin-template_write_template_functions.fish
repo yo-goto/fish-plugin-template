@@ -20,40 +20,40 @@ function __fish-plugin-template_write_template_functions
 
     set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_functions ]"$cn
 
-    builtin printf -- '%s\n' \
-    "# generated function template from fish-plugin" \
-    "function $plugin -d 'DISCRIPTION'" \
-    "   argparse \ " \
-    "       -x 'v,h' \ " \
-    "       'v/version' 'h/help' -- \$argv" \
-    "   or return 1" \
-    "   " \
-    "   set --local version_$version_variable 'v0.0.1'" \
-    "   # color template set" \
-    "   set --local cc (set_color \$fish_color_comment)" \
-    "   set --local ce (set_color \$fish_color_error)" \
-    "   set --local cn (set_color \$fish_color_normal)" \
-    "   " \
-    "   if set -q _flag_version" \
-    "       echo \"$plugin: \" \$version_$version_variable" \
-    "       return" \
-    "   else if set -q _flag_help" \
-    "       __"$plugin"_help" \
-    "       return" \
-    "   else" \
-    "       # main body" \
-    "   end" \
-    "end" \
-    "" \
-    "# helper function" \
-    "function __"$plugin"_help" \
-    "   echo 'USAGE:'" \
-    "   echo '      $plugin [OPTION]'" \
-    "   echo 'OPTIONS:'" \
-    "   echo '      -v, --version       Show version info'" \
-    "   echo '      -h, --help          Show help'" \
-    "end" \
-    "   " >> "$filepath"
+builtin printf -- '%s\n' \
+"# generated function template from \"fish-plugin-template\"
+function $plugin -d 'DISCRIPTION'
+    argparse \ 
+        -x 'v,h' \ 
+        'v/version' 'h/help' -- \$argv
+    or return 1
+
+    set --local version_$version_variable 'v0.0.1'
+    ## color template set
+    # set --local cc (set_color \$fish_color_comment)
+    # set --local ce (set_color \$fish_color_error)
+    # set --local cn (set_color \$fish_color_normal)
+
+    if set -q _flag_version
+        echo \"$plugin: \" \$version_$version_variable
+        return
+    else if set -q _flag_help
+        __"$plugin"_help
+        return
+    else
+        # main body
+    end
+end
+
+# helper function
+function __"$plugin"_help
+    echo 'USAGE:'
+    echo '      $plugin [OPTION]'
+    echo 'OPTIONS:'
+    echo '      -v, --version       Show version info'
+    echo '      -h, --help          Show help'
+end
+    " >> "$filepath"
 
     if test "$status" = "0"
         echo $ca"-->added template:"$cc "$filepath" $cn
