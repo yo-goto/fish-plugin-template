@@ -6,7 +6,7 @@ function fish-plugin-template -d "Make fish plugin templates"
         -- $argv
     or return 1
     
-    set --local version_fish_plugin_template "v0.3.3"
+    set --local version_fish_plugin_template "v0.3.4"
 
     # color
     set --local cn (set_color $__fish_plugin_templete_color_normal)

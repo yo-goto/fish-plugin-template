@@ -1,3 +1,5 @@
+- v0.3.4
+    - fixed functions & completions template
 - v0.3.3
     - updated `functions` template function to replace the name of plugin version variable to be valid
 - v0.3.2
