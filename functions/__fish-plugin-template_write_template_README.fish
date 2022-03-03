@@ -20,7 +20,8 @@ function __fish-plugin-template_write_template_README
     set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_README]"$cn
 
 builtin printf -- '%s\n' \
-"# $plugin
+"<!-- README template generated from 'fish-plugin-template' -->
+# $plugin
 > YOUR PLUGIN DISCRIPTION
 
 ## Installation

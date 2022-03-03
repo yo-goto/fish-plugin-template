@@ -19,11 +19,11 @@ function __fish-plugin-template_write_template_completions
 
     set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_completions ]"$cn
 
-    builtin printf -- '%s\n' \
-    "# generated completion template from \"fish-plugin-template\"" \
-    "complete -c $plugin -s v -l version -f -d \"Show version info\"" \
-    "complete -c $plugin -s h -l help -f -d \"Show help\"" \
-    "   " >> $filepath
+builtin printf -- '%s\n' \
+"# completion template generated from 'fish-plugin-template'
+complete -c $plugin -s v -l version -f -d \"Show version info\"
+complete -c $plugin -s h -l help -f -d \"Show help\"
+   " >> "$filepath"
 
     if test "$status" = "0"
         echo $ca"-->added template:"$cc "$filepath" $cn

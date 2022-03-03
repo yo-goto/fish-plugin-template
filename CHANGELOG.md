@@ -1,3 +1,5 @@
+- v0.3.5
+    - fixed & formated template function
 - v0.3.4
     - fixed functions & completions template
 - v0.3.3

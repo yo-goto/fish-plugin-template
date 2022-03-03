@@ -21,7 +21,7 @@ function __fish-plugin-template_write_template_functions
     set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_functions ]"$cn
 
 builtin printf -- '%s\n' \
-"# generated function template from \"fish-plugin-template\"
+"# function template generated from 'fish-plugin-template'
 function $plugin -d 'DISCRIPTION'
     argparse \ 
         -x 'v,h' \ 
