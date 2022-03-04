@@ -23,8 +23,8 @@ function __fish-plugin-template_write_template_functions
 builtin printf -- '%s\n' \
 "# function template generated from 'fish-plugin-template'
 function $plugin -d 'DISCRIPTION'
-    argparse \ 
-        -x 'v,h' \ 
+    argparse \
+        -x 'v,h' \
         'v/version' 'h/help' -- \$argv
     or return 1
 
@@ -36,10 +36,8 @@ function $plugin -d 'DISCRIPTION'
 
     if set -q _flag_version
         echo \"$plugin: \" \$version_$version_variable
-        return
     else if set -q _flag_help
         __"$plugin"_help
-        return
     else
         # main body
     end
@@ -47,11 +45,12 @@ end
 
 # helper function
 function __"$plugin"_help
-    echo 'USAGE:'
-    echo '      $plugin [OPTION]'
-    echo 'OPTIONS:'
-    echo '      -v, --version       Show version info'
-    echo '      -h, --help          Show help'
+    printf '%s\n' \\
+        'USAGE:' \\
+        '      $plugin [OPTION]' \\
+        'OPTIONS:' \\
+        '      -v, --version       Show version info' \\
+        '      -h, --help          Show help'
 end
     " >> "$filepath"
 
