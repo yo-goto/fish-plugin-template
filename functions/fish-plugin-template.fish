@@ -2,11 +2,11 @@ function fish-plugin-template -d "Make fish plugin templates"
     argparse \
         -x 'v,h,d' \
         'v/version' 'h/help' 'd/debug' \
-        'p/project' 'a/add_template' \
+        'p/project' 'n/no_template' \
         -- $argv
     or return 1
     
-    set --local version_fish_plugin_template "v0.3.5"
+    set --local version_fish_plugin_template "v0.4.0"
 
     # color
     set --local cn (set_color $__fish_plugin_templete_color_normal)
@@ -21,6 +21,11 @@ function fish-plugin-template -d "Make fish plugin templates"
     # set target name for a plugin name or directory name
     set --local target_first $argv[1]
     set --local target_second_file_name $argv[2]
+
+    set --local _flag_add_template "--add_template"
+    if set -q _flag_no_template
+        set _flag_add_template ""
+    end
 
     if set -q _flag_version
         echo "fish-plugin-template:" $version_fish_plugin_template
@@ -84,7 +89,7 @@ function __fish-plugin-template_help
     echo '      -h, --help            Show help'
     echo '      -d, --debug           Debug'
     echo '      -p, --project         Make project files (README LICENSE CHANGELOG)'
-    echo '      -a, --add_template    Add template to specified files'
+    echo '      -n, --no_template     Disable adding templates'
     set_color normal
 end
 

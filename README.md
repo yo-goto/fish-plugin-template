@@ -30,7 +30,7 @@ Options:
       -h, --help            Show help
       -d, --debug           Debug
       -p, --project         Make project files (README LICENSE CHANGELOG)
-      -a, --add_template    Add template to specified files
+      -n, --no_template     Disable adding templates
 ```
 
 As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/fish-plugin-template.fish`.
@@ -61,17 +61,16 @@ Make a full template in this directory? [Y/n]: y
 If you want to make `my-plugin.fish` in `functions` direcotry, type this.
 
 ```console
-❯ fpt functions my-plugin -a
+❯ fpt functions my-plugin
 -->created: ./functions
 -->created: ./functions/my-plugin.fish
 -->added template: ./functions/my-plugin.fish
 ```
 
-If you need only project markdown files (`README.md`, `LICENSE.md`, `CHANGELOG.md`), just type `fish-plugin-template -p`.
-With `-a` or `--add_template` option flag, you can get template files.
+If you need only project markdown files (`README.md`, `LICENSE.md`, `CHANGELOG.md`), just type `fish-plugin-template -p`. You can get template files. To disable adding a template, use `-n, --no_template` option.
 
 ```console
-❯ fpt -pa
+❯ fpt -p
 -->created: ./README.md
 -->added template: ./README.md
 -->created: ./CHANGELOG.md

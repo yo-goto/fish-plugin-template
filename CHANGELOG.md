@@ -1,5 +1,10 @@
+- v0.4.0
+    - erased `-a, --add_template` option and added `-n, --no_template` option instead
+    - made it the default behaviour to add template to a target file
+- v0.3.6
+    - fixed function template
 - v0.3.5
-    - fixed & formated template function
+    - fixed & formatted template function
 - v0.3.4
     - fixed functions & completions template
 - v0.3.3
