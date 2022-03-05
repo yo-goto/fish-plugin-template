@@ -23,8 +23,8 @@ function __fish-plugin-template_write_template_functions
 builtin printf -- '%s\n' \
 "# function template generated from 'fish-plugin-template'
 function $plugin -d 'DISCRIPTION'
-    argparse \
-        -x 'v,h' \
+    argparse \\
+        -x 'v,h' \\
         'v/version' 'h/help' -- \$argv
     or return 1
 
