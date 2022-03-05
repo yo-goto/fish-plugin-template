@@ -87,20 +87,23 @@ end
 # helper functions
 function __fish-plugin-template_help
     set_color $__fish_plugin_templete_color_color
-    echo 'Usage: '
-    echo '      fish-plugin-template'
-    echo '      fish-plugin-template [-v | -h]'
-    echo '      fish-plugin-template DIRECTORY PLUGINNAME [-n]'
-    echo '      fish-plugin-template PROJECTFILE [-n]'
-    echo '      fish-plugin-template -m [-n] PLUGINNAME'
-    echo '      fish-plugin-template -p [-n] PLUGINNAME'
-    echo 'Options: '
-    echo '      -v, --version         Show version info'
-    echo '      -h, --help            Show help'
-    echo '      -d, --debug           Debug'
-    echo '      -n, --no_template     Disable adding templates'
-    echo '      -m, --minimal         Make a minimal template set (function completion CHANGELOG)'
-    echo '      -p, --project         Make project files (README LICENSE CHANGELOG)'
+    printf '%s\n' \
+        'ALIAS:' \
+        '      fpt' \
+        'USAGE: ' \
+        '      fish-plugin-template' \
+        '      fish-plugin-template [-v | -h]' \
+        '      fish-plugin-template DIRECTORY PLUGINNAME [-n]' \
+        '      fish-plugin-template PROJECTFILE [-n]' \
+        '      fish-plugin-template -m [-n] PLUGINNAME' \
+        '      fish-plugin-template -p [-n] PLUGINNAME' \
+        'OPTIONS: ' \
+        '      -v, --version         Show version info' \
+        '      -h, --help            Show help' \
+        '      -d, --debug           Debug' \
+        '      -n, --no_template     Disable adding templates' \
+        '      -m, --minimal         Make a minimal template set (function completion CHANGELOG)' \
+        '      -p, --project         Make project files (README LICENSE CHANGELOG)'
     set_color normal
 end
 
