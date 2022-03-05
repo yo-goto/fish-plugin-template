@@ -155,30 +155,16 @@ function __fish-plugin-template_interactive
     # create project files
     for i in (seq 1 (count $list_create_files))
         while true
-            read -l -P "Make \"$list_create_files[$i]\"? [Y/n]: " question
+            read -l -P "Make \"$list_create_files[$i]\" and insert a template? [Y/n]: " question
             switch "$question"
                 case Y y yes
                     ## project files
-                    __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_debug
+                    __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
                     break
                 case N n no
                     break
             end
         end
-
-        if functions --query __fish-plugin-template_write_template_$list_create_files[$i]
-            while true
-                read -l -P "Add template to \"$list_create_files[$i].md\"? [Y/n]: " choice_add_templete
-                switch "$choice_add_templete"
-                    case Y y yes
-                        __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --add_template $_flag_debug
-                        break
-                    case N n no
-                        break
-                end
-            end
-        end
-
     end
 end
 
