@@ -2,6 +2,7 @@
     - erased `-a, --add_template` option and added `-n, --no_template` option instead
     - made it the default behaviour to add template to a target file
     - simplify the way to make project files (such as `README.md` in the interactive mode
+    - added a new option `-m, --minimal` to easily make a minimal template set (functions/pluginName.fish, completions/pluginName.fish, CHANGLOG.md) & also added it int the interactive mode
 - v0.3.6
     - fixed function template
 - v0.3.5

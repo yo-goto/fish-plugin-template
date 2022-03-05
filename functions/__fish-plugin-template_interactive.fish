@@ -37,10 +37,24 @@ function __fish-plugin-template_interactive
         test "$loop_exit_flag" = "true"; and break
     end
 
-
-    # second quesiton to create a full template
+    # second quesiton to create a minimal template set
     while true
-        read -l -P "Make a full template in this directory? [Y/n]: " question
+        read -l -P "Make a minimal template set? (function & completion & CHANGELOG) [Y/n]: " question
+        switch "$question"
+            case Y y yes
+                # minimal template set
+                __fish-plugin-template_make_template "functions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
+                __fish-plugin-template_make_template "completions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
+                __fish-plugin-template_make_template 'root' "CHANGELOG" '.md' --create_file --add_template $_flag_debug
+                return
+            case N n no
+                break
+        end        
+    end
+
+    # third quesiton to create a full template set
+    while true
+        read -l -P "Make a full template set? [Y/n]: " question
         switch "$question"
             case Y y yes
                 # prototype

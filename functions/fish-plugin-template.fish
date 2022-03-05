@@ -1,8 +1,10 @@
 function fish-plugin-template -d "Make fish plugin templates"
     argparse \
         -x 'v,h,d' \
+        -x 'p,m' \
         'v/version' 'h/help' 'd/debug' \
-        'p/project' 'n/no_template' \
+        'n/no_template' \
+        'p/project' 'm/minimal' \
         -- $argv
     or return 1
     
@@ -29,17 +31,23 @@ function fish-plugin-template -d "Make fish plugin templates"
 
     if set -q _flag_version
         echo "fish-plugin-template:" $version_fish_plugin_template
-        return
     else if set -q _flag_help
         __fish-plugin-template_help
-        return
     else if set -q _flag_project
         # create README CHANGELOG LICENSE
         for i in (seq 1 (count $list_create_files))
             __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
         end
-        return
     else if test -n "$target_first"
+        # make a minimal template set (function, completion, CHANGELOG)
+        if set -q _flag_minimal
+            set --local plugin_name (string replace --all -r "\.fish\$" "" $target_first)
+            __fish-plugin-template_make_template "functions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
+            __fish-plugin-template_make_template "completions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
+            __fish-plugin-template_make_template 'root' "CHANGELOG" '.md' --create_file $_flag_add_template $_flag_debug
+            return
+        end
+
         # create target dir & files
         if contains $target_first $list_all
             # for list_create_files
@@ -81,15 +89,18 @@ function __fish-plugin-template_help
     set_color $__fish_plugin_templete_color_color
     echo 'Usage: '
     echo '      fish-plugin-template'
-    echo '      fish-plugin-template [-v | -h] [-p [-a]]'
-    echo '      fish-plugin-template DIRECTORY PLUGINNAME [-a]'
-    echo '      fish-plugin-template PROJECTFILE [-a]'
+    echo '      fish-plugin-template [-v | -h]'
+    echo '      fish-plugin-template DIRECTORY PLUGINNAME [-n]'
+    echo '      fish-plugin-template PROJECTFILE [-n]'
+    echo '      fish-plugin-template -m [-n] PLUGINNAME'
+    echo '      fish-plugin-template -p [-n] PLUGINNAME'
     echo 'Options: '
     echo '      -v, --version         Show version info'
     echo '      -h, --help            Show help'
     echo '      -d, --debug           Debug'
-    echo '      -p, --project         Make project files (README LICENSE CHANGELOG)'
     echo '      -n, --no_template     Disable adding templates'
+    echo '      -m, --minimal         Make a minimal template set (function completion CHANGELOG)'
+    echo '      -p, --project         Make project files (README LICENSE CHANGELOG)'
     set_color normal
 end
 
