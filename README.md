@@ -20,17 +20,22 @@ fisher update yo-goto/fish-plugin-template
 ## Usage 🔦
 
 ```console
-Usage:
+ALIAS:
+      fpt
+USAGE:
       fish-plugin-template
-      fish-plugin-template [-v | -h] [-p [-a]]
-      fish-plugin-template DIRECTORY PLUGINNAME [-a]
-      fish-plugin-template PROJECTFILE [-a]
-Options:
+      fish-plugin-template [-v | -h]
+      fish-plugin-template DIRECTORY PLUGINNAME [-n]
+      fish-plugin-template PROJECTFILE [-n]
+      fish-plugin-template -m [-n] PLUGINNAME
+      fish-plugin-template -p [-n] PLUGINNAME
+OPTIONS:
       -v, --version         Show version info
       -h, --help            Show help
       -d, --debug           Debug
-      -p, --project         Make project files (README LICENSE CHANGELOG)
       -n, --no_template     Disable adding templates
+      -m, --minimal         Make a minimal template set (function completion CHANGELOG)
+      -p, --project         Make project files (README LICENSE CHANGELOG)
 ```
 
 As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/fish-plugin-template.fish`.
