@@ -9,8 +9,8 @@ function __fish-plugin-template_interactive
     set --local ce (set_color $__fish_plugin_templete_color_error)
     set --local tb (set_color -o)
 
-    # template directories & files for the project 
-    set --local list_create_dir "functions" "completions" "conf.d" 
+    # template directories & files for the project
+    set --local list_create_dir "functions" "completions" "conf.d"
     set --local list_create_dir_test "tests"
     set --local list_create_files "README" "CHANGELOG" "LICENSE"
 
@@ -49,7 +49,7 @@ function __fish-plugin-template_interactive
                 return
             case N n no
                 break
-        end        
+        end
     end
 
     # third quesiton to create a full template set
@@ -136,7 +136,7 @@ function __fish-plugin-template_interactive
                         while true
                             read -l -P "Type testing file name: " testing_file
                             __fish-plugin-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --create_file $_flag_debug
-                            
+
                             if functions --query __fish-plugin-template_write_template_$list_create_dir_test[$i]
                                 while true
                                     read -l -P "Add template to \"$testing_file.fish\"? [Y/n]: " choice_add_templete
