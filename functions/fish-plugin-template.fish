@@ -77,6 +77,7 @@ function fish-plugin-template -d "Make fish plugin templates"
             end
         else
             echo $ce"Target not found"$cn
+            return 1
         end
     else
         __fish-plugin-template_interactive $_flag_debug
