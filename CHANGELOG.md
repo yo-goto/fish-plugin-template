@@ -1,3 +1,5 @@
+- v1.0.1
+    - fix: version subcommand
 - v1.0.0
     - feat: implement automatic git initalization
     - refactor: rename helper functions & variables short
