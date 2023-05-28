@@ -8,11 +8,11 @@ function fish-plugin-template -d "Make fish plugin templates"
         -- $argv
     or return 1
 
-    set --local version_fish_plugin_template "v0.4.0"
+    set --local version_fpt "v0.4.0"
 
     # color
-    set --local cn (set_color $__fish_plugin_templete_color_normal)
-    set --local ce (set_color $__fish_plugin_templete_color_error)
+    set --local cn (set_color $__fpt_color_normal)
+    set --local ce (set_color $__fpt_color_error)
 
     # template directories & files for the project
     set --local list_create_dir "functions" "completions" "conf.d"
@@ -33,35 +33,35 @@ function fish-plugin-template -d "Make fish plugin templates"
         echo "fish-plugin-template:" $version_fish_plugin_template
         return
     else if set -q _flag_help
-        __fish-plugin-template_help
+        __fpt_help
         return
     else if set -q _flag_project
         # create README CHANGELOG LICENSE
         for i in (seq 1 (count $list_create_files))
-            __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
+            __fpt_make_template 'root' "$list_create_files[$i]" '.md' --create_file $_flag_add_template $_flag_debug
         end
     else if test -n "$target_first"
         # make a minimal template set (function, completion, CHANGELOG)
         if set -q _flag_minimal
             set --local plugin_name (string replace --all -r "\.fish\$" "" $target_first)
-            __fish-plugin-template_make_template "functions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
-            __fish-plugin-template_make_template "completions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
-            __fish-plugin-template_make_template 'root' "CHANGELOG" '.md' --create_file $_flag_add_template $_flag_debug
+            __fpt_make_template "functions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
+            __fpt_make_template "completions" "$plugin_name" '.fish' --create_file $_flag_add_template $_flag_debug
+            __fpt_make_template 'root' "CHANGELOG" '.md' --create_file $_flag_add_template $_flag_debug
         else if contains $target_first $list_all
             # create target dir & files
             # for list_create_files
             if contains $target_first $list_create_files
                 # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                __fish-plugin-template_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
+                __fpt_make_template "root" "$target_first" ".md" --create_file $_flag_add_template $_flag_debug
             else if test -n "$target_second_file_name"
                 # for list_create_dir
                 if contains $target_first $list_create_dir
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                    __fish-plugin-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
+                    __fpt_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                 else if contains $target_first $list_create_dir_test
                     # for list_create_dir_test
                     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
-                    __fish-plugin-template_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
+                    __fpt_make_template "$target_first" "$target_second_file_name" ".fish" --create_file $_flag_add_template $_flag_debug
                 end
             else
                 echo $ce"Please pass a file name to the second argument"$cn
@@ -72,27 +72,27 @@ function fish-plugin-template -d "Make fish plugin templates"
             return 1
         end
     else
-        __fish-plugin-template_interactive $_flag_debug
+        __fpt_interactive $_flag_debug
     end
 
     # initialize git repository
-    __fish-plugin-template_initialize_git
+    __fpt_initialize_git
 end
 
 
 # helper functions
-function __fish-plugin-template_help
-    set_color $__fish_plugin_templete_color_color
+function __fpt_help
+    set_color $__fpt_color_color
     printf '%s\n' \
         'ALIAS:' \
         '      fpt' \
         'USAGE: ' \
-        '      fish-plugin-template' \
-        '      fish-plugin-template [-v | -h]' \
-        '      fish-plugin-template DIRECTORY PLUGINNAME [-n]' \
-        '      fish-plugin-template PROJECTFILE [-n]' \
-        '      fish-plugin-template -m [-n] PLUGINNAME' \
-        '      fish-plugin-template -p [-n] PLUGINNAME' \
+        '      fpt' \
+        '      fpt [-v | -h]' \
+        '      fpt DIRECTORY PLUGINNAME [-n]' \
+        '      fpt PROJECTFILE [-n]' \
+        '      fpt -m [-n] PLUGINNAME' \
+        '      fpt -p [-n] PLUGINNAME' \
         'OPTIONS: ' \
         '      -v, --version         Show version info' \
         '      -h, --help            Show help' \

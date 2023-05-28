@@ -1,4 +1,4 @@
-function __fish-plugin-template_write_template_LICENSE
+function __fpt_write_template_LICENSE
     # --argument-names 'plugin' '_flag_debug'
     argparse 'd/debug' -- $argv
     or return 1
@@ -7,17 +7,17 @@ function __fish-plugin-template_write_template_LICENSE
     set --local filepath "./LICENSE.md"
 
     if not test -n "$plugin"
-        echo "code failed: [__fish-plugin-template_write_template_LICENSE]"
+        echo "code failed: [__fpt_write_template_LICENSE]"
         return 1
     end
 
     # color
-    set --local cc (set_color $__fish_plugin_templete_color_color)
-    set --local cn (set_color $__fish_plugin_templete_color_normal)
-    set --local ca (set_color $__fish_plugin_templete_color_accent)
-    set --local ce (set_color $__fish_plugin_templete_color_error)
+    set --local cc (set_color $__fpt_color_color)
+    set --local cn (set_color $__fpt_color_normal)
+    set --local ca (set_color $__fpt_color_accent)
+    set --local ce (set_color $__fpt_color_error)
 
-    set -q _flag_debug; and echo $ce"Debug point: [__fish-plugin-template_write_template_LICENSE]"$cn
+    set -q _flag_debug; and echo $ce"Debug point: [__fpt_write_template_LICENSE]"$cn
 
     set --local user_name '{YOUR_NAME}'
     set --local time_now (command date +%Y)
