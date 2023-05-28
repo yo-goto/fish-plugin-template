@@ -1,9 +1,10 @@
 # initialize current directory as git repositry
 function __fish-plugin-template_initialize_git
-  if command git rev-parse --is-inside-work-tree 2>/dev/null
+  if command test -d .git
     return
   else
-    echo (command git init)
+    command git init >/dev/null
+    echo "-->initalized git repositry"
   end
 end
 
