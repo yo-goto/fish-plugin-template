@@ -1,4 +1,4 @@
-function __fish-plugin-template_make_template
+function __fpt_make_template
     # --argument-names 'directory' 'base_name' 'extension' '_flag_create_file' '_flag_add_template' '_flag_debug'
     argparse 'c/create_file' 'a/add_template' 'd/debug' -- $argv
     or return 1
@@ -31,10 +31,10 @@ function __fish-plugin-template_make_template
     set --local filepath
     set --local template
     # color
-    set --local cc (set_color $__fish_plugin_templete_color_color)
-    set --local cn (set_color $__fish_plugin_templete_color_normal)
-    set --local ca (set_color $__fish_plugin_templete_color_accent)
-    set --local ce (set_color $__fish_plugin_templete_color_error)
+    set --local cc (set_color $__fpt_color_color)
+    set --local cn (set_color $__fpt_color_normal)
+    set --local ca (set_color $__fpt_color_accent)
+    set --local ce (set_color $__fpt_color_error)
 
     if test "$directory" = "root"
         # make a directory root file
@@ -78,11 +78,11 @@ function __fish-plugin-template_make_template
     # write template to the file created
     if set -q _flag_add_template && test -e "$filepath"
         set -q _flag_debug; and echo $ce"Debug point: [C-1]"$cn
-        if functions --query __fish-plugin-template_write_template_override_$template
-            __fish-plugin-template_write_template_override_$template $base_name $_flag_debug
-        else if functions --query __fish-plugin-template_write_template_$template
+        if functions --query __fpt_write_template_override_$template
+            __fpt_write_template_override_$template $base_name $_flag_debug
+        else if functions --query __fpt_write_template_$template
             set -q _flag_debug; and echo $ce"Debug point: [C-2]"$cn
-            __fish-plugin-template_write_template_$template $base_name $_flag_debug
+            __fpt_write_template_$template $base_name $_flag_debug
         end
     end
 end

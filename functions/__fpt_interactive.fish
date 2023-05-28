@@ -1,12 +1,12 @@
-function __fish-plugin-template_interactive
+function __fpt_interactive
     argparse 'd/debug' -- $argv
     or return 1
 
     # color
-    set --local cc (set_color $__fish_plugin_templete_color_color)
-    set --local cn (set_color $__fish_plugin_templete_color_normal)
-    set --local ca (set_color $__fish_plugin_templete_color_accent)
-    set --local ce (set_color $__fish_plugin_templete_color_error)
+    set --local cc (set_color $__fpt_color_color)
+    set --local cn (set_color $__fpt_color_normal)
+    set --local ca (set_color $__fpt_color_accent)
+    set --local ce (set_color $__fpt_color_error)
     set --local tb (set_color -o)
 
     # template directories & files for the project
@@ -43,9 +43,9 @@ function __fish-plugin-template_interactive
         switch "$question"
             case Y y yes
                 # minimal template set
-                __fish-plugin-template_make_template "functions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
-                __fish-plugin-template_make_template "completions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
-                __fish-plugin-template_make_template 'root' "CHANGELOG" '.md' --create_file --add_template $_flag_debug
+                __fpt_make_template "functions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
+                __fpt_make_template "completions" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
+                __fpt_make_template 'root' "CHANGELOG" '.md' --create_file --add_template $_flag_debug
                 return
             case N n no
                 break
@@ -61,20 +61,20 @@ function __fish-plugin-template_interactive
                 for i in (seq 1 (count $list_create_dir))
                     set -q _flag_debug; and \
                     echo $ce"Debug pattern(dir): "$cn "$list_create_dir[$i]" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
-                    __fish-plugin-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
+                    __fpt_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
                 end
 
                 for i in (seq 1 (count $list_create_dir_test))
                     set -q _flag_debug; and \
                     echo $ce"Debug pattern(dir): "$cn "$list_create_dir_test[$i]" "$plugin_name" '.fish' --create_file --add_template $_flag_debug
-                    __fish-plugin-template_make_template "$list_create_dir_test[$i]" "$plugin_name-test" '.fish' --create_file --add_template $_flag_debug
+                    __fpt_make_template "$list_create_dir_test[$i]" "$plugin_name-test" '.fish' --create_file --add_template $_flag_debug
                 end
 
                 ## project files
                 for i in (seq 1 (count $list_create_files))
                     set -q _flag_debug; and \
                     echo $ce"Debug pattern(file): "$cn 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
-                    __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
+                    __fpt_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
                 end
                 return
             case N n no
@@ -89,12 +89,12 @@ function __fish-plugin-template_interactive
             read -l -P "Make \"$list_create_dir[$i]\" directory? [Y/n]: " question
             switch "$question"
                 case Y y yes
-                    __fish-plugin-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' $_flag_debug
+                    __fpt_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' $_flag_debug
                     while true
                         read -l -P "Make \"$plugin_name.fish\" in \"./$list_create_dir[$i]\"? [Y/n]: " choice_create_file
                         switch "$choice_create_file"
                             case Y y yes
-                                __fish-plugin-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --create_file $_flag_debug
+                                __fpt_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --create_file $_flag_debug
                                 set loop_exit_flag "true"
                                 break
                             case N n no
@@ -103,12 +103,12 @@ function __fish-plugin-template_interactive
                         end
                     end
 
-                    if functions --query __fish-plugin-template_write_template_$list_create_dir[$i]
+                    if functions --query __fpt_write_template_$list_create_dir[$i]
                         while true
                             read -l -P "Add template to \"$plugin_name.fish\"? [Y/n]: " choice_add_templete
                             switch "$choice_add_templete"
                                 case Y y yes
-                                    __fish-plugin-template_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --add_template $_flag_debug
+                                    __fpt_make_template "$list_create_dir[$i]" "$plugin_name" '.fish' --add_template $_flag_debug
                                     break
                                 case N n no
                                     break
@@ -135,14 +135,14 @@ function __fish-plugin-template_interactive
                     for i in (seq 1 (count $list_create_dir_test))
                         while true
                             read -l -P "Type testing file name: " testing_file
-                            __fish-plugin-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --create_file $_flag_debug
+                            __fpt_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --create_file $_flag_debug
 
-                            if functions --query __fish-plugin-template_write_template_$list_create_dir_test[$i]
+                            if functions --query __fpt_write_template_$list_create_dir_test[$i]
                                 while true
                                     read -l -P "Add template to \"$testing_file.fish\"? [Y/n]: " choice_add_templete
                                     switch "$choice_add_templete"
                                         case Y y yes
-                                            __fish-plugin-template_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --add_template $_flag_debug
+                                            __fpt_make_template "$list_create_dir_test[$i]" "$testing_file" '.fish' --add_template $_flag_debug
                                             break
                                         case N n no
                                             break
@@ -173,7 +173,7 @@ function __fish-plugin-template_interactive
             switch "$question"
                 case Y y yes
                     ## project files
-                    __fish-plugin-template_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
+                    __fpt_make_template 'root' "$list_create_files[$i]" '.md' --create_file --add_template $_flag_debug
                     break
                 case N n no
                     break
