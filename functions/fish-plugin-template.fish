@@ -8,7 +8,7 @@ function fish-plugin-template -d "Make fish plugin templates"
         -- $argv
     or return 1
 
-    set --local version_fpt "v1.0.0"
+    set --local version_fpt "v1.0.1"
 
     # color
     set --local cn (set_color $__fpt_color_normal)
@@ -30,7 +30,7 @@ function fish-plugin-template -d "Make fish plugin templates"
     end
 
     if set -q _flag_version
-        echo "fish-plugin-template:" $version_fish_plugin_template
+        echo "fish-plugin-template:" $version_fpt
         return
     else if set -q _flag_help
         __fpt_help
