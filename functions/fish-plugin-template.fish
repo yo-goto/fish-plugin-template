@@ -8,7 +8,7 @@ function fish-plugin-template -d "Make fish plugin templates"
         -- $argv
     or return 1
 
-    set --local version_fpt "v0.4.0"
+    set --local version_fpt "v1.0.0"
 
     # color
     set --local cn (set_color $__fpt_color_normal)

@@ -1,5 +1,7 @@
 - v1.0.0
-    - new feature: automatic git initalization
+    - feat: implement automatic git initalization
+    - refactor: rename helper functions & variables short
+    - fix: rename helper functions & variables short
 - v0.4.0
     - erased `-a, --add_template` option and added `-n, --no_template` option instead
     - made it the default behaviour to add template to a target file
