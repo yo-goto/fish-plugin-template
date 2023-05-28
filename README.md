@@ -43,6 +43,8 @@ As a alias, `fpt` is also available. This alias is defined in `~/.config/conf.d/
 For basic usage, you should type only `fish-plugin-template` or `fpt` with no options in your command-line.  
 `fish-plugin-template` starts questions for your fish plugin.
 
+If the current directory is not initalized as a git repository, fish-plugin-template automatically initalize it.
+
 ```console
 ❯ fish-plugin-template
 Please type base name which will be used as a file name

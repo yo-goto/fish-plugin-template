@@ -52,7 +52,6 @@ Options:
 - [CHANGELOG.md](/CHANGELOG.md)
 
 " >> $filepath
-    
 
     if test "$status" = "0"
         echo $ca"-->added template:"$cc "$filepath" $cn
