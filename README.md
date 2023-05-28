@@ -86,7 +86,7 @@ If you need only project markdown files (`README.md`, `LICENSE.md`, `CHANGELOG.m
 ```
 
 You can write a template file for yourself.
-For example, if you want to make your own function template, make a file named `__fish-plugin-template_write_template_override_functions.fish` in the config directory (normally `~/.config/fish`). `fish-plugin-template` tries to read override files instead of default templates if exist.
+For example, if you want to make your own function template, make a file named `__fpt_write_template_override_functions.fish` in the config directory (normally `~/.config/fish`). `fish-plugin-template` tries to read override files instead of default templates if exist.
 
 ## 🔖 Change log
 - [CHANGELOG.md](/CHANGELOG.md)
