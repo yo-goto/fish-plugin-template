@@ -30,7 +30,7 @@ function fish-plugin-template -d "Make fish plugin templates"
     end
 
     if set -q _flag_version
-        echo "fish-plugin-template:" $version_fish_plugin_template
+        echo "fish-plugin-template:" $version_fpt
         return
     else if set -q _flag_help
         __fpt_help
