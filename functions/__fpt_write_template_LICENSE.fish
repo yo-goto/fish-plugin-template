@@ -22,7 +22,7 @@ function __fpt_write_template_LICENSE
     set --local user_name '{YOUR_NAME}'
     set --local time_now (command date +%Y)
 
-builtin printf -- '%s\n' \
+builtin printf '%s\n' \
 "The MIT License (MIT)
 
 Copyright (c) $time_now $user_name
@@ -43,7 +43,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE." >> $filepath
+SOFTWARE.
+
+">> $filepath
 
     if test "$status" = "0"
         echo $ca"-->added template:"$cc "$filepath" $cn
